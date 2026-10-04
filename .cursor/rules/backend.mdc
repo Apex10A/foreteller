@@ -1,0 +1,12 @@
+---
+description: Server, Supabase, and data rules
+globs: src/server/**/*.ts,src/app/api/**/*.ts,supabase/**/*
+---
+- All schema changes go through migrations in supabase/migrations. Never edit the DB by hand.
+- Regenerate database.types.ts after each migration.
+- Enable RLS on every table. Public tables are read-only; writes use the admin client on the server only.
+- The service role key is never imported in client code or exposed via NEXT_PUBLIC_.
+- Cron routes verify an Authorization header against CRON_SECRET.
+- Sync jobs must be idempotent (use upserts keyed on the provider's match id).
+- Cache provider data in the DB; never call the football API per page view.
+- Read env vars only through lib/env.ts.

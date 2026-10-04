@@ -1,0 +1,7 @@
+---
+description: Testing conventions
+globs: **/*.test.ts,**/*.test.tsx
+---
+- Use Vitest. Test behavior, not implementation.
+- Prediction functions need table-driven tests, including edge cases (no history, 0-0 draws, extreme scores).
+- Mock the repository layer in service tests, never the database client.

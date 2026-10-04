@@ -1,0 +1,10 @@
+---
+description: React and Next.js component rules
+globs: src/app/**/*.tsx,src/features/**/*.tsx
+---
+- Default to Server Components. Add "use client" only for interactivity, and push it to the smallest leaf component.
+- Fetch data in server components via services, not in useEffect.
+- Components are presentational where possible; extract logic into hooks.
+- Define props with explicit interfaces. Handle loading, empty, and error states.
+- Use Tailwind with consistent spacing. Accessible markup (semantic elements, labels, alt text, keyboard support).
+- Show predictions as probabilities with percentages, never as guarantees.

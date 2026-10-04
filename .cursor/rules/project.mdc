@@ -1,0 +1,29 @@
+---
+description: Core project conventions
+alwaysApply: true
+---
+# Football Prediction Site
+
+Stack: Next.js (App Router), TypeScript (strict), Supabase, Tailwind, Vitest, Zod.
+
+## Architecture
+- Flow is route -> service -> repository / prediction engine. Never skip layers.
+- app/ files stay thin: parse input, call a service, return UI or JSON.
+- Only files in server/repositories may import a Supabase client.
+- Prediction logic in server/prediction must be pure functions with no I/O.
+- External API responses are validated with Zod and mapped to internal types
+  in server/providers. Raw API shapes must not leak past that folder.
+
+## Code quality
+- TypeScript strict. No `any`, no non-null assertions (`!`), no `@ts-ignore`.
+- Small single-purpose functions (aim for under 40 lines). Early returns over nesting.
+- Name things by domain meaning (expectedGoals, not val1). No magic numbers: use named constants.
+- No dead code, no commented-out code, no console.log in committed code.
+- Prefer named exports. One component per file.
+- Handle errors explicitly: return typed results or throw typed errors. Never swallow errors.
+
+## Workflow
+- Before writing code for a non-trivial task, outline the plan and the files touched.
+- Make minimal diffs. Do not refactor unrelated code.
+- Add or update tests for any change to prediction or service logic.
+- Do not install new dependencies without asking.
